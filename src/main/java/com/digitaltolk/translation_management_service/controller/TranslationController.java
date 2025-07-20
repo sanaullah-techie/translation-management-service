@@ -56,7 +56,7 @@ public class TranslationController {
     @Operation(summary = "Find translations by tags")
     @ApiResponse(responseCode = "200", description = "Translations found by tags")
     public ResponseEntity<Page<TranslationResponseDto>> findTranslationsByTags(
-            @Parameter(description = "List of tags to search for") @RequestParam List<String> tags,
+            @Parameter(description = "List of tags to search for") @Valid @RequestParam List<String> tags,
             @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
             @Parameter(description = "Page size") @RequestParam(defaultValue = "50") int size,
             @Parameter(description = "Sort by field") @RequestParam(defaultValue = "updatedAt") String sortBy,
@@ -71,7 +71,7 @@ public class TranslationController {
     @Operation(summary = "Find translations by translation key pattern")
     @ApiResponse(responseCode = "200", description = "Translations found by key pattern")
     public ResponseEntity<Page<TranslationResponseDto>> findTranslationsByKey(
-            @Parameter(description = "Translation key pattern to search for") @RequestParam String key,
+            @Parameter(description = "Translation key pattern to search for") @Valid @RequestParam String key,
             @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
             @Parameter(description = "Page size") @RequestParam(defaultValue = "50") int size,
             @Parameter(description = "Sort by field") @RequestParam(defaultValue = "updatedAt") String sortBy,
@@ -86,7 +86,7 @@ public class TranslationController {
     @Operation(summary = "Find translations by content pattern")
     @ApiResponse(responseCode = "200", description = "Translations found by content pattern")
     public ResponseEntity<Page<TranslationResponseDto>> findTranslationsByContent(
-            @Parameter(description = "Content pattern to search for") @RequestParam String content,
+            @Parameter(description = "Content pattern to search for") @Valid @RequestParam String content,
             @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
             @Parameter(description = "Page size") @RequestParam(defaultValue = "50") int size,
             @Parameter(description = "Sort by field") @RequestParam(defaultValue = "updatedAt") String sortBy,
@@ -98,9 +98,9 @@ public class TranslationController {
     }
 
      @GetMapping("/search/by-locale")
-     @Operation(summary = "Export translations for a specific locale")
+     @Operation(summary = "Find translations by locale")
      @ApiResponse(responseCode = "200", description = "Translations exported successfully")
-      public ResponseEntity<List<TranslationResponseDto>> exportTranslations( @Parameter(description = "Content pattern to search for") @RequestParam String locale,
+      public ResponseEntity<List<TranslationResponseDto>> exportTranslations( @Parameter(description = "Content pattern to search for") @Valid @RequestParam String locale,
                                                                        @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
                                                                        @Parameter(description = "Page size") @RequestParam(defaultValue = "100") int size,
                                                                        @Parameter(description = "Sort by field") @RequestParam(defaultValue = "updatedAt") String sortBy,

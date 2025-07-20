@@ -15,6 +15,8 @@ public class DataInitializer implements CommandLineRunner {
 
     private final TranslationRepository translationRepository;
     private final Random random = new Random();
+    private final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private final char[] charArray = chars.toCharArray();
 
     private final String[] locales = {"en", "fr", "es", "de", "it", "pt", "ru", "ja", "ko", "zh"};
     private final String[] tags = {"mobile", "desktop", "web", "app", "ui", "button", "message", "error", "success"};
@@ -79,11 +81,10 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private String generateRandomString(int length) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < length; i++) {
-            sb.append(chars.charAt(random.nextInt(chars.length())));
+            sb.append(charArray[random.nextInt(charArray.length)]);
         }
 
         return sb.toString();

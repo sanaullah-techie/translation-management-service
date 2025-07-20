@@ -7,7 +7,6 @@ import com.digitaltolk.translation_management_service.exception.TranslationNotFo
 import com.digitaltolk.translation_management_service.mapper.TranslationMapper;
 import com.digitaltolk.translation_management_service.repository.TranslationRepository;
 import com.digitaltolk.translation_management_service.service.TranslationService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -52,9 +51,6 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     public Page<TranslationResponseDto> findTranslationsByTags(List<String> tags, int page, int size, String sortBy, String sortDir) {
-        if (tags == null || tags.isEmpty()) {
-            throw new IllegalArgumentException("Tags list cannot be null or empty");
-        }
 
         Sort sort = sortDir.equalsIgnoreCase("desc") ?
                 Sort.by(sortBy).descending() :
@@ -72,10 +68,6 @@ public class TranslationServiceImpl implements TranslationService {
 
     public Page<TranslationResponseDto> findTranslationsByKey(String key, int page, int size, String sortBy, String sortDir) {
 
-        if (StringUtils.isEmpty(key)) {
-            throw new IllegalArgumentException("Translation key cannot be null or empty");
-        }
-
         Sort sort = sortDir.equalsIgnoreCase("desc") ?
                 Sort.by(sortBy).descending() :
                 Sort.by(sortBy).ascending();
@@ -91,9 +83,6 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     public Page<TranslationResponseDto> findTranslationsByContent(String content, int page, int size, String sortBy, String sortDir) {
-        if (content == null || content.trim().isEmpty()) {
-            throw new IllegalArgumentException("Content cannot be null or empty");
-        }
 
         Sort sort = sortDir.equalsIgnoreCase("desc") ?
                 Sort.by(sortBy).descending() :
