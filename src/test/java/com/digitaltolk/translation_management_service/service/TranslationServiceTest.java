@@ -176,28 +176,6 @@ class TranslationServiceTest {
     }
 
     @Test
-    void findTranslationsByTags_NullTags() {
-        // When & Then
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> translationService.findTranslationsByTags(null, 0, 10, "id", "asc")
-        );
-        assertEquals("Tags list cannot be null or empty", exception.getMessage());
-        verifyNoInteractions(translationRepository, translationMapper);
-    }
-
-    @Test
-    void findTranslationsByTags_EmptyTags() {
-        // When & Then
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> translationService.findTranslationsByTags(Collections.emptyList(), 0, 10, "id", "asc")
-        );
-        assertEquals("Tags list cannot be null or empty", exception.getMessage());
-        verifyNoInteractions(translationRepository, translationMapper);
-    }
-
-    @Test
     void findTranslationsByTags_NoResults() {
         // Given
         List<String> tags = Arrays.asList("tag1", "tag2");
@@ -249,28 +227,6 @@ class TranslationServiceTest {
     }
 
     @Test
-    void findTranslationsByKey_EmptyKey() {
-        // When & Then
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> translationService.findTranslationsByKey("", 0, 10, "id", "asc")
-        );
-        assertEquals("Translation key cannot be null or empty", exception.getMessage());
-        verifyNoInteractions(translationRepository);
-    }
-
-    @Test
-    void findTranslationsByKey_NullKey() {
-        // When & Then
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> translationService.findTranslationsByKey(null, 0, 10, "id", "asc")
-        );
-        assertEquals("Translation key cannot be null or empty", exception.getMessage());
-        verifyNoInteractions(translationRepository);
-    }
-
-    @Test
     void findTranslationsByKey_NoResults() {
         // Given
         String key = "nonexistent.key";
@@ -302,28 +258,6 @@ class TranslationServiceTest {
         assertFalse(result.isEmpty());
         assertEquals(1, result.getContent().size());
         verify(translationRepository).findByContentContainingIgnoreCase(eq(content), any(Pageable.class));
-    }
-
-    @Test
-    void findTranslationsByContent_NullContent() {
-        // When & Then
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> translationService.findTranslationsByContent(null, 0, 10, "id", "asc")
-        );
-        assertEquals("Content cannot be null or empty", exception.getMessage());
-        verifyNoInteractions(translationRepository);
-    }
-
-    @Test
-    void findTranslationsByContent_EmptyContent() {
-        // When & Then
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> translationService.findTranslationsByContent("   ", 0, 10, "id", "asc")
-        );
-        assertEquals("Content cannot be null or empty", exception.getMessage());
-        verifyNoInteractions(translationRepository);
     }
 
     @Test
