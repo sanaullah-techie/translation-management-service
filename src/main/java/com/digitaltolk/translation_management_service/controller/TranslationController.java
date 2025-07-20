@@ -102,7 +102,7 @@ public class TranslationController {
      @ApiResponse(responseCode = "200", description = "Translations exported successfully")
       public ResponseEntity<List<TranslationResponseDto>> exportTranslations( @Parameter(description = "Content pattern to search for") @Valid @RequestParam String locale,
                                                                        @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
-                                                                       @Parameter(description = "Page size") @RequestParam(defaultValue = "100") int size,
+                                                                       @Parameter(description = "Page size") @RequestParam(defaultValue = "50") int size,
                                                                        @Parameter(description = "Sort by field") @RequestParam(defaultValue = "updatedAt") String sortBy,
                                                                        @Parameter(description = "Sort direction") @RequestParam(defaultValue = "desc") String sortDir) {
 
@@ -119,7 +119,7 @@ public class TranslationController {
             @Parameter(description = "Filter by content") @RequestParam(required = false) String content,
             @Parameter(description = "Filter by tags") @RequestParam(required = false) List<String> tags,
             @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
-            @Parameter(description = "Page size") @RequestParam(defaultValue = "100") int size,
+            @Parameter(description = "Page size") @RequestParam(defaultValue = "50") int size,
             @Parameter(description = "Sort by field") @RequestParam(defaultValue = "updatedAt") String sortBy,
             @Parameter(description = "Sort direction") @RequestParam(defaultValue = "desc") String sortDir) {
 
