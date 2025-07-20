@@ -49,7 +49,8 @@ Since the endpoints are protected by JWT authentication, users must first regist
   Create a new translation
   Search for translations
 
-<img width="1014" height="461" alt="img1" src="https://github.com/user-attachments/assets/a6b5fe27-76ee-49ec-ab2a-ae2e85ad158a" />
+<img width="1011" height="467" alt="image" src="https://github.com/user-attachments/assets/a81f6b14-e982-4bd3-8237-8b5103e2b453" />
+
 
 <img width="1891" height="616" alt="img2" src="https://github.com/user-attachments/assets/16495ce4-1003-44e3-9445-2eef15ab292b" />
 
