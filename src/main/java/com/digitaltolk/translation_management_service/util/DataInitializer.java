@@ -1,7 +1,10 @@
 package com.digitaltolk.translation_management_service.util;
 
+import com.digitaltolk.translation_management_service.cache.TranslationCacheManager;
 import com.digitaltolk.translation_management_service.entity.Translation;
 import com.digitaltolk.translation_management_service.repository.TranslationRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +16,7 @@ import java.util.Set;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
+    private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
     private final TranslationRepository translationRepository;
     private final Random random = new Random();
     private final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -29,9 +33,9 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (translationRepository.count() == 0) {
-            System.out.println("Populating database with test data...");
+            logger.info("Populating database with test data...");
             populateDatabase(100000);
-            System.out.println("Database population completed!");
+            logger.info("Database population completed!");
         }
     }
 
